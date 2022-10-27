@@ -1,0 +1,40 @@
+@use "./reset.scss";
+@use "./colors.scss";
+
+::-webkit-scrollbar {
+  width: 0.5ch;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+}
+
+body {
+  font-family: Ubuntu Mono, monospace;
+  background-color: var(--bg-color);
+  margin: 0;
+}
+
+a,
+body,
+button {
+  color: var(--main-color);
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+h1 {
+  white-space: nowrap;
+}

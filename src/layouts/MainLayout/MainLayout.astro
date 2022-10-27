@@ -1,4 +1,8 @@
 ---
+import styles from "./MainLayout.module.scss"
+import Header from "./Header"
+import Spacer from "@components/common/Spacer"
+
 const metaData = {
   title: "Tic-Tac-Toe",
   description: "freeCodeCamp: Build a Tic-Tac-Toe game",
@@ -9,6 +13,7 @@ const metaData = {
 <html lang="en">
   <head>
     <title>{metaData.title}</title>
+    <meta name="robots" content="index,follow" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={metaData.description} />
@@ -20,7 +25,9 @@ const metaData = {
     <meta name="twitter:site" content={metaData.twitter} />
     <meta name="twitter:creator" content={metaData.twitter} />
   </head>
-  <body>
+  <body class={styles.wrapper}>
+    <Header title={metaData.title} />
+    <Spacer />
     <main>
       <slot />
     </main>
