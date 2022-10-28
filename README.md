@@ -13,5 +13,3 @@ Fulfill the below user stories and get all of the tests to pass. Use whichever l
 **User Story:** My game will reset as soon as it's over so I can play again.
 
 **User Story:** I can choose whether I want to play as X or O.
-
-When you are finished, include a link to your project on CodePen and click the "I've completed this challenge" button.
