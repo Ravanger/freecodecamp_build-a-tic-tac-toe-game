@@ -4,16 +4,30 @@ import { useState } from "react"
 import Cell from "./Cell"
 
 // ?TODO?: Lift to global state?
-const initialCells: CellPropTypes[][] = Array(3)
-  .fill(null)
-  .map(() => Array<CellPropTypes>(3).fill({ state: undefined }))
+const initialCells: CellPropTypes[] = Array(9).fill({ state: undefined })
+const TEMP_PLAYER_STATE = "X"
 
 const Board: React.FC = () => {
-  const [cellsState, setCellsState] = useState<CellPropTypes[][]>(initialCells)
+  const [cellsState, setCellsState] = useState<CellPropTypes[]>(initialCells)
 
-  const cellButtons = cellsState.map((cellRow) =>
-    cellRow.map((cell) => <Cell state={cell.state} />)
-  )
+  const cellButtons = cellsState.map((cell, cellIndex) => (
+    <Cell
+      key={cellIndex}
+      state={cell.state}
+      onClick={() => {
+        if (!cellsState[cellIndex] || cellsState[cellIndex]?.state) return
+        console.log("Cell clicked: ", TEMP_PLAYER_STATE, cellIndex)
+
+        setCellsState((prevCellState) =>
+          prevCellState.map((prevCell, prevCellIndex) =>
+            prevCellIndex === cellIndex
+              ? { state: TEMP_PLAYER_STATE }
+              : prevCell
+          )
+        )
+      }}
+    />
+  ))
 
   return <div className={styles.board}>{cellButtons}</div>
 }

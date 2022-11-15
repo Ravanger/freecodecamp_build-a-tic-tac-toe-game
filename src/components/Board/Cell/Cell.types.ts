@@ -1,5 +1,6 @@
 export type CellPropTypes = {
-  state: CellState
+  state?: CellState
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
 type CellState = "X" | "O" | undefined
