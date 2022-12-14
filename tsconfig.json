@@ -18,6 +18,9 @@
       "@store/*": [
         "src/store/*"
       ],
+      "@util/*": [
+        "src/util/*"
+      ],
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"

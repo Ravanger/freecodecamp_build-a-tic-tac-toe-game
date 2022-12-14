@@ -26,8 +26,8 @@ const metaData = {
     <meta name="twitter:creator" content={metaData.twitter} />
   </head>
   <body class={styles.wrapper}>
-    <Header title={metaData.title} />
-    <Spacer />
+    <Header title={metaData.title} client:load />
+    <Spacer size="4ch" />
     <main>
       <slot />
     </main>

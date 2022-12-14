@@ -1,7 +1,9 @@
 .header {
-  display: flex;
-  align-items: center;
-  gap: 2ch;
-  padding: 1ch 10%;
-  text-transform: uppercase;
+  h1 {
+    text-transform: uppercase;
+  }
+
+  div {
+    text-align: center;
+  }
 }
