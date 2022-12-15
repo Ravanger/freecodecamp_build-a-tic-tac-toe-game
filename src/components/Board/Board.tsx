@@ -20,7 +20,11 @@ const Board: React.FC = () => {
   const currentWinner = useStore(winner)
   const aiEnabled = useStore(isAiEnabled)
 
-  const makeAIMove = () => {
+  const makeCheatAIMove = async () => {
+    if (currentPlayerTurn !== CellState.O) return
+
+    await new Promise((resolve) => setTimeout(resolve, 500))
+
     // Find the first empty square and mark it with the AI's value.
     const emptySquareIndex = cellsState.findIndex(
       (square) => square === CellState.Empty
@@ -46,13 +50,15 @@ const Board: React.FC = () => {
     }
   }
 
-  const handleCellClick = (index: number) => {
+  const handleCellClick = async (index: number) => {
     if (
       cellsState[index] !== CellState.Empty ||
       currentWinner !== CellState.Empty
     ) {
       return
     }
+
+    if (aiEnabled && currentPlayerTurn === CellState.O) return
 
     const updatedBoard = cellsState.map((prevCell, prevCellIndex) =>
       prevCellIndex === index ? currentPlayerTurn : prevCell
@@ -65,9 +71,8 @@ const Board: React.FC = () => {
     switchTurns()
     setCellsState(updatedBoard)
 
-    // If the current player is the AI, let it take its turn.
     if (aiEnabled) {
-      setTimeout(() => makeAIMove(), 500)
+      await makeCheatAIMove()
     }
   }
 
