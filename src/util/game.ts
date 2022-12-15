@@ -42,3 +42,11 @@ export const checkForWinner = (board: CellState[]) => {
 
   return false
 }
+
+export const checkForTie = (board: CellState[]): boolean => {
+  if (board.some((cell) => cell === CellState.Empty)) {
+    return false
+  }
+
+  return true
+}
