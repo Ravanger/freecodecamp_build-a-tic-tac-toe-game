@@ -1,0 +1,16 @@
+.button {
+  border: 1px solid var(--main-color);
+  border-radius: 1ch;
+  padding: 1ch 2ch;
+  transition: scale 0.03s ease-in-out;
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    scale: 1.1;
+  }
+
+  &:active {
+    scale: 1;
+  }
+}

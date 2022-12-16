@@ -14,7 +14,7 @@
 }
 
 body {
-  font-family: Ubuntu Mono, monospace;
+  font-family: "Ubuntu Mono", monospace;
   background-color: var(--bg-color);
   margin: 0;
   text-align: center;
@@ -37,5 +37,9 @@ button {
 }
 
 h1 {
+  white-space: nowrap;
+}
+
+span {
   white-space: nowrap;
 }

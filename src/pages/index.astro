@@ -1,9 +1,19 @@
 ---
-import Game from "@components/Game"
 import MainLayout from "@layouts/MainLayout/MainLayout.astro"
+import Header from "@layouts/MainLayout/Header"
+import Game from "@components/Game"
 import "@styles/global.scss"
+import "@fontsource/ubuntu-mono/400.css"
+import "@fontsource/ubuntu-mono/700.css"
+
+export const metaData = {
+  title: "Tic-Tac-Toe",
+  description: "freeCodeCamp: Build a Tic-Tac-Toe game",
+  twitter: "@BRossovsky",
+}
 ---
 
 <MainLayout>
+  <Header title={metaData.title} />
   <Game client:load />
 </MainLayout>

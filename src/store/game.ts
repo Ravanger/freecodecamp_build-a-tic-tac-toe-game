@@ -20,8 +20,8 @@ export const setWinner = () => {
   gameState.set(GameState.GameOver)
 }
 
-export const enableAi = () => {
-  aiEnabled.set(true)
+export const enableAi = (val: boolean) => {
+  aiEnabled.set(val)
 }
 
 export const setTie = () => {

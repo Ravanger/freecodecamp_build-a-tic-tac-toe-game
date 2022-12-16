@@ -90,12 +90,15 @@ const Game: React.FC = () => {
     // }
   }
 
+  let render = <></>
+
   switch (currentGameState) {
     case GameState.Menu:
     default:
-      return <Menu />
+      render = <Menu />
+      break
     case GameState.Playing:
-      return (
+      render = (
         <>
           <div>
             <TurnIndicator />
@@ -107,9 +110,13 @@ const Game: React.FC = () => {
           />
         </>
       )
+      break
     case GameState.GameOver:
-      return <GameOver isTie={isTie} />
+      render = <GameOver isTie={isTie} />
+      break
   }
+
+  return <main>{render}</main>
 }
 
 export default Game

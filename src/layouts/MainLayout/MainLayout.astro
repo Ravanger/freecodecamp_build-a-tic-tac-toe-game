@@ -1,13 +1,6 @@
 ---
+import { metaData } from "@pages/index.astro"
 import styles from "./MainLayout.module.scss"
-import Header from "./Header"
-import Spacer from "@components/common/Spacer"
-
-const metaData = {
-  title: "Tic-Tac-Toe",
-  description: "freeCodeCamp: Build a Tic-Tac-Toe game",
-  twitter: "@BRossovsky",
-}
 ---
 
 <html lang="en">
@@ -26,10 +19,6 @@ const metaData = {
     <meta name="twitter:creator" content={metaData.twitter} />
   </head>
   <body class={styles.wrapper}>
-    <Spacer size="8ch" />
-    <Header title={metaData.title} />
-    <main>
-      <slot />
-    </main>
+    <slot />
   </body>
 </html>
