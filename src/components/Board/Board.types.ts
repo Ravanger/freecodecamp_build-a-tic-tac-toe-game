@@ -1,4 +1,4 @@
-import type { CellState } from "./Cell.types"
+import type { CellState } from "./Cell/Cell.types"
 
 export interface BoardPropTypes {
   cellsState: CellState[]

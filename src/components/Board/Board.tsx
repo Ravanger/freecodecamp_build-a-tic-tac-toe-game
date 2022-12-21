@@ -1,4 +1,4 @@
-import type { BoardPropTypes } from "./Cell/Board.types"
+import type { BoardPropTypes } from "./Board.types"
 import Cell from "./Cell"
 import styles from "./Board.module.scss"
 
