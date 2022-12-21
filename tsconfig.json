@@ -23,6 +23,10 @@
       ],
     },
     "jsx": "react-jsx",
-    "jsxImportSource": "react"
-  }
+    "jsxImportSource": "react",
+  },
+  "exclude": [
+    "./node_modules/",
+    "./dist/"
+  ],
 }

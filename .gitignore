@@ -21,3 +21,6 @@ pnpm-debug.log*
 
 # other
 bun.lockb
+/test-results/
+/playwright-report/
+/playwright/.cache/

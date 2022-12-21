@@ -1,10 +1,5 @@
 module.exports = {
-  // ...
-  extends: [
-    // ...
-    "plugin:astro/recommended",
-  ],
-  // ...
+  extends: ["plugin:astro/recommended"],
   overrides: [
     {
       // Define the configuration for `.astro` file.
@@ -22,6 +17,5 @@ module.exports = {
         // "astro/no-set-html-directive": "error"
       },
     },
-    // ...
   ],
 }
