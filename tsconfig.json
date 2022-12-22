@@ -24,6 +24,9 @@
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react",
+    "types": [
+      "vitest/globals"
+    ]
   },
   "exclude": [
     "./node_modules/",

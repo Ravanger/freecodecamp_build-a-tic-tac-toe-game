@@ -1,10 +1,8 @@
-import { checkForTie, checkForWinner } from "@util/game"
+import { checkForTie, checkForWinner } from "./game"
 import { CellState } from "@components/Board/Cell/Cell.types"
-import { test, expect } from "@playwright/test"
-const describe = test.describe
 
 describe("checkForWinner", () => {
-  test("should return true if there is a row of Xs", () => {
+  it("should return true if there is a row of Xs", () => {
     const board = [
       CellState.X,
       CellState.X,
@@ -19,7 +17,7 @@ describe("checkForWinner", () => {
     expect(checkForWinner(board)).toBe(true)
   })
 
-  test("should return true if there is a column of Os", () => {
+  it("should return true if there is a column of Os", () => {
     const board = [
       CellState.O,
       CellState.Empty,
@@ -34,7 +32,7 @@ describe("checkForWinner", () => {
     expect(checkForWinner(board)).toBe(true)
   })
 
-  test("should return true if there is a diagonal of Xs", () => {
+  it("should return true if there is a diagonal of Xs", () => {
     const board = [
       CellState.X,
       CellState.Empty,
@@ -49,7 +47,7 @@ describe("checkForWinner", () => {
     expect(checkForWinner(board)).toBe(true)
   })
 
-  test("should return false if there is no winner", () => {
+  it("should return false if there is no winner", () => {
     const board = [
       CellState.O,
       CellState.X,
@@ -66,7 +64,7 @@ describe("checkForWinner", () => {
 })
 
 describe("checkForTie", () => {
-  test("should return true if the board is full and there is no winner", () => {
+  it("should return true if the board is full and there is no winner", () => {
     const board = [
       CellState.O,
       CellState.X,
@@ -81,7 +79,7 @@ describe("checkForTie", () => {
     expect(checkForTie(board)).toBe(true)
   })
 
-  test("should return false if there is an empty cell on the board", () => {
+  it("should return false if there is an empty cell on the board", () => {
     const board = [
       CellState.O,
       CellState.X,
