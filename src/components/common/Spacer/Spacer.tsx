@@ -18,6 +18,7 @@ const Spacer: React.FC<SpacerPropTypes> = ({
         ...(width && { width: width }),
         ...(height && { height: height }),
       }}
+      role="separator"
     />
   )
 }
