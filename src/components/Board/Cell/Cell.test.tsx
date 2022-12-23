@@ -10,6 +10,6 @@ describe("Cell component", () => {
   it("should render an empty cell", () => {
     const cell = screen.getByRole("button")
     expect(cell).toBeDefined()
-    expect(cell.textContent).toBe("")
+    expect(cell.textContent).toBe(CellState.Empty)
   })
 })
