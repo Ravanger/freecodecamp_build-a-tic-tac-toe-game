@@ -5,13 +5,14 @@ import Spacer from "@components/common/Spacer"
 import styles from "./Menu.module.scss"
 import Button from "@components/common/Button"
 
+const friend = "friend"
+const ai = "ai"
+const easy = "easy"
+const mid = "mid"
+const hard = "hard"
+
 const Menu: React.FC = () => {
   const isAiEnabled = useStore(aiEnabled)
-  const friend = "friend"
-  const ai = "ai"
-  const easy = "easy"
-  const mid = "mid"
-  const hard = "hard"
 
   const handleAiSelection: React.ChangeEventHandler<HTMLInputElement> = (
     event
@@ -28,13 +29,18 @@ const Menu: React.FC = () => {
   const handleAiDifficulty: React.ChangeEventHandler<HTMLInputElement> = (
     event
   ) => {
+    // TODO: AI Difficulty
+
     switch (event.target.value) {
       case easy:
       default:
+        // return easyDifficulty()
         return
       case mid:
+        // return midDifficulty()
         return
       case hard:
+        // return hardDifficulty()
         return
     }
   }
