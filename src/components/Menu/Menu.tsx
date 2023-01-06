@@ -1,23 +1,20 @@
-import { startGame, enableAi, aiEnabled } from "@store/game"
+import {
+  startGame,
+  enableAi,
+  aiEnabled,
+  setAiDifficulty,
+  aiDifficulty,
+} from "@store/game"
 import { useStore } from "@nanostores/react"
 import SelectionGroup from "@components/common/SelectionGroup"
 import Spacer from "@components/common/Spacer"
 import styles from "./Menu.module.scss"
 import Button from "@components/common/Button"
-
-enum AiSelection {
-  Friend = "friend",
-  Ai = "ai",
-}
-
-enum AiDifficult {
-  Easy = "easy",
-  Mid = "mid",
-  Hard = "hard",
-}
+import { AiDifficulty, AiSelection } from "src/types/ai"
 
 const Menu: React.FC = () => {
   const isAiEnabled = useStore(aiEnabled)
+  const AiDifficultySelected = useStore(aiDifficulty)
 
   const handleAiSelection = (value: AiSelection) => {
     switch (value) {
@@ -31,19 +28,14 @@ const Menu: React.FC = () => {
     }
   }
 
-  const handleAiDifficulty = (value: AiDifficult) => {
-    // TODO: AI Difficulty
-
+  const handleAiDifficulty = (value: AiDifficulty) => {
     switch (value) {
-      case AiDifficult.Easy:
-        // return easyDifficulty()
-        return
-      case AiDifficult.Mid:
-        // return midDifficulty()
-        return
-      case AiDifficult.Hard:
-        // return hardDifficulty()
-        return
+      case AiDifficulty.Easy:
+        return setAiDifficulty(AiDifficulty.Easy)
+      case AiDifficulty.Mid:
+        return setAiDifficulty(AiDifficulty.Mid)
+      case AiDifficulty.Hard:
+        return setAiDifficulty(AiDifficulty.Hard)
       default:
         const _exhaustiveCheck: never = value
         throw new Error(`Unhandled case: ${_exhaustiveCheck}`)
@@ -64,8 +56,8 @@ const Menu: React.FC = () => {
         <SelectionGroup
           title="AI difficulty"
           handleClick={handleAiDifficulty}
-          values={[AiDifficult.Easy, AiDifficult.Mid, AiDifficult.Hard]}
-          selected={AiDifficult.Easy}
+          values={[AiDifficulty.Easy, AiDifficulty.Mid, AiDifficulty.Hard]}
+          selected={AiDifficultySelected}
           disabled={!isAiEnabled}
         />
       </div>

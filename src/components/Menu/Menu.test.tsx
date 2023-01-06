@@ -1,4 +1,4 @@
-import { GameState } from "@components/Game/Game.types"
+import { GameState } from "@type/game"
 import { gameState } from "@store/game"
 import { fireEvent, render, screen } from "@testing-library/react"
 import Menu from "./Menu"

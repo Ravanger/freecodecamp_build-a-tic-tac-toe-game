@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react"
 import GameOver from "./GameOver"
 import { gameState } from "@store/game"
-import { GameState } from "@components/Game/Game.types"
+import { GameState } from "@type/game"
 
 describe("GameOver component", () => {
   beforeEach(() => {

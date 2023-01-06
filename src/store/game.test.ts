@@ -14,7 +14,7 @@ import {
   resetGame,
 } from "./game"
 import { CellState } from "@components/Board/Cell/Cell.types"
-import { GameState } from "@components/Game/Game.types"
+import { GameState } from "@type/game"
 
 describe("game module", () => {
   it("switchTurns should switch the value of playerTurn", () => {

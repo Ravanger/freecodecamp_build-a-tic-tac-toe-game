@@ -1,4 +1,3 @@
-import { GameState } from "./Game.types"
 import { useStore } from "@nanostores/react"
 import { checkForTie, checkForWinner } from "@util/game"
 import { CellState } from "@components/Board/Cell/Cell.types"
@@ -18,6 +17,7 @@ import Board from "@components/Board"
 import Spacer from "@components/common/Spacer"
 import Menu from "@components/Menu"
 import GameOver from "@components/GameOver"
+import { GameState } from "@type/game"
 
 const Game: React.FC = () => {
   const currentCellsState = useStore(cellsState)
