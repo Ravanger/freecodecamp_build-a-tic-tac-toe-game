@@ -50,7 +50,6 @@ const Menu: React.FC = () => {
           handleClick={handleAiSelection}
           values={[AiSelection.Friend, AiSelection.Ai]}
           selected={isAiEnabled ? AiSelection.Ai : AiSelection.Friend}
-          // disabled
         />
         <Spacer size="4ch" />
         <SelectionGroup

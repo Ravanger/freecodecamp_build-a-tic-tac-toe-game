@@ -46,8 +46,6 @@ export const setCellsState = (updatedBoard: CellState[]) => {
 export const resetGame = () => {
   playerTurn.set(CellState.X)
   winner.set(CellState.Empty)
-  aiEnabled.set(false)
-  aiDifficulty.set(AiDifficulty.Easy)
   tie.set(false)
   gameState.set(GameState.Menu)
   cellsState.set(initialCells)
