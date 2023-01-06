@@ -17,29 +17,11 @@ const Menu: React.FC = () => {
   const AiDifficultySelected = useStore(aiDifficulty)
 
   const handleAiSelection = (value: AiSelection) => {
-    switch (value) {
-      case AiSelection.Friend:
-        return enableAi(false)
-      case AiSelection.Ai:
-        return enableAi(true)
-      default:
-        const _exhaustiveCheck: never = value
-        throw new Error(`Unhandled case: ${_exhaustiveCheck}`)
-    }
+    enableAi(value === AiSelection.Ai)
   }
 
   const handleAiDifficulty = (value: AiDifficulty) => {
-    switch (value) {
-      case AiDifficulty.Easy:
-        return setAiDifficulty(AiDifficulty.Easy)
-      case AiDifficulty.Mid:
-        return setAiDifficulty(AiDifficulty.Mid)
-      case AiDifficulty.Hard:
-        return setAiDifficulty(AiDifficulty.Hard)
-      default:
-        const _exhaustiveCheck: never = value
-        throw new Error(`Unhandled case: ${_exhaustiveCheck}`)
-    }
+    setAiDifficulty(value)
   }
 
   return (
