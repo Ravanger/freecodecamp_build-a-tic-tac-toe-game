@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { render, screen, act } from "@testing-library/react"
 import SelectionGroup from "./SelectionGroup"
 
 describe("SelectionGroup component", () => {
@@ -37,7 +37,9 @@ describe("SelectionGroup component", () => {
     )
 
     const option1Button = screen.getByText(selectedValue)
-    option1Button.click()
+    act(() => {
+      option1Button.click()
+    })
     expect(handleClick).toHaveBeenCalledTimes(1)
     expect(handleClick).toHaveBeenCalledWith(selectedValue)
   })

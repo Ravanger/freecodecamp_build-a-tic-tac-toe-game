@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { render, screen, act } from "@testing-library/react"
 import GameOver from "./GameOver"
 import { gameState } from "@store/game"
 import { GameState } from "@type/game"
@@ -26,7 +26,9 @@ describe("GameOver component", () => {
     expect(button).toBeDefined()
 
     expect(gameState.get()).toBe(GameState.Playing)
-    button.click()
+    act(() => {
+      button.click()
+    })
     expect(gameState.get()).toBe(GameState.Menu)
   })
 })
