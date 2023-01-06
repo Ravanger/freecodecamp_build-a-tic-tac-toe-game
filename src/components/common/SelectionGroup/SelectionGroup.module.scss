@@ -24,16 +24,17 @@
       border-radius: 1ch;
       border-width: 1px;
     }
-  }
 
-  button[data-selected="true"] {
-    color: var(--bg-color);
-    background-color: var(--main-color);
+    &[data-selected="true"] {
+      color: var(--bg-color);
+      background-color: var(--main-color);
+    }
 
     &:disabled {
       background-color: var(--grey);
       cursor: revert;
       color: var(--bg-color);
+      cursor: initial;
     }
   }
 }
