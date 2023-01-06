@@ -1,4 +1,4 @@
-export interface SelectionGroupPropTypes<T> {
+export interface SelectionGroupPropTypes<T = string> {
   title: string
   values: string[]
   selected: string
