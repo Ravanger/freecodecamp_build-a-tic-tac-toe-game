@@ -1,13 +1,12 @@
 import { GameState } from "@type/game"
 import { gameState } from "@store/game"
-import { fireEvent, render, screen } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import Menu from "./Menu"
 
 describe("Menu component", () => {
   // TODO: Tests
 
   beforeEach(() => {
-    gameState.set(GameState.Menu)
     render(<Menu />)
   })
 
@@ -16,7 +15,7 @@ describe("Menu component", () => {
     expect(button).toBeDefined()
 
     expect(gameState.get()).toBe(GameState.Menu)
-    fireEvent.click(button)
+    button.click()
     expect(gameState.get()).toBe(GameState.Playing)
   })
 })

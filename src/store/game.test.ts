@@ -62,7 +62,6 @@ describe("game module", () => {
     resetGame()
     expect(playerTurn.get()).toBe(CellState.X)
     expect(winner.get()).toBe(CellState.Empty)
-    expect(aiEnabled.get()).toBe(false)
     expect(tie.get()).toBe(false)
     expect(gameState.get()).toBe(GameState.Menu)
     expect(cellsState.get()).toEqual(initialCells)

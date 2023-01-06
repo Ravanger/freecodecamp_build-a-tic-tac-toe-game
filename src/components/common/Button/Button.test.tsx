@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import Button from "./Button"
 
 describe("Button component", () => {
@@ -17,9 +17,9 @@ describe("Button component", () => {
 
   it("calls the handleClick function when the button is clicked", () => {
     const button = screen.getByText(buttonText)
-    fireEvent.click(button)
+    button.click()
     expect(fn).toHaveBeenCalledOnce()
-    fireEvent.click(button)
+    button.click()
     expect(fn).toHaveBeenCalledTimes(2)
   })
 })
