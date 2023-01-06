@@ -4,6 +4,8 @@ import { fireEvent, render, screen } from "@testing-library/react"
 import Menu from "./Menu"
 
 describe("Menu component", () => {
+  // TODO: Tests
+
   beforeEach(() => {
     gameState.set(GameState.Menu)
     render(<Menu />)

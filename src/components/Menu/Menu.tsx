@@ -1,68 +1,71 @@
 import { startGame, enableAi, aiEnabled } from "@store/game"
 import { useStore } from "@nanostores/react"
-import RadioGroup from "@components/common/RadioGroup"
+import SelectionGroup from "@components/common/SelectionGroup"
 import Spacer from "@components/common/Spacer"
 import styles from "./Menu.module.scss"
 import Button from "@components/common/Button"
 
-const friend = "friend"
-const ai = "ai"
-const easy = "easy"
-const mid = "mid"
-const hard = "hard"
+enum AiSelection {
+  Friend = "friend",
+  Ai = "ai",
+}
+
+enum AiDifficult {
+  Easy = "easy",
+  Mid = "mid",
+  Hard = "hard",
+}
 
 const Menu: React.FC = () => {
   const isAiEnabled = useStore(aiEnabled)
 
-  const handleAiSelection: React.ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
-    switch (event.target.value) {
-      case friend:
-      default:
+  const handleAiSelection = (value: AiSelection) => {
+    switch (value) {
+      case AiSelection.Friend:
         return enableAi(false)
-      case ai:
+      case AiSelection.Ai:
         return enableAi(true)
+      default:
+        const _exhaustiveCheck: never = value
+        throw new Error(`Unhandled case: ${_exhaustiveCheck}`)
     }
   }
 
-  const handleAiDifficulty: React.ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
+  const handleAiDifficulty = (value: AiDifficult) => {
     // TODO: AI Difficulty
 
-    switch (event.target.value) {
-      case easy:
-      default:
+    switch (value) {
+      case AiDifficult.Easy:
         // return easyDifficulty()
         return
-      case mid:
+      case AiDifficult.Mid:
         // return midDifficulty()
         return
-      case hard:
+      case AiDifficult.Hard:
         // return hardDifficulty()
         return
+      default:
+        const _exhaustiveCheck: never = value
+        throw new Error(`Unhandled case: ${_exhaustiveCheck}`)
     }
   }
 
   return (
     <div className={styles.menu}>
       <div className={styles.settings}>
-        <RadioGroup
-          labelText="Play against"
+        <SelectionGroup<AiSelection>
+          title="Play against"
           handleClick={handleAiSelection}
-          name="aiSelection"
-          values={[friend, ai]}
-          checked={isAiEnabled ? ai : friend}
-          disabled
+          values={[AiSelection.Friend, AiSelection.Ai]}
+          selected={isAiEnabled ? AiSelection.Ai : AiSelection.Friend}
+          // disabled
         />
         <Spacer size="4ch" />
-        <RadioGroup
-          labelText="AI difficulty"
+        <SelectionGroup
+          title="AI difficulty"
           handleClick={handleAiDifficulty}
-          name="aiDifficulty"
-          values={[easy, mid, hard]}
-          checked={easy}
+          values={[AiDifficult.Easy, AiDifficult.Mid, AiDifficult.Hard]}
+          selected={AiDifficult.Easy}
           disabled={!isAiEnabled}
         />
       </div>

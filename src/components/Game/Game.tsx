@@ -94,7 +94,6 @@ const Game: React.FC = () => {
 
   switch (currentGameState) {
     case GameState.Menu:
-    default:
       render = <Menu />
       break
     case GameState.Playing:
@@ -114,6 +113,9 @@ const Game: React.FC = () => {
     case GameState.GameOver:
       render = <GameOver isTie={isTie} />
       break
+    default:
+      const _exhaustiveCheck: never = currentGameState
+      throw new Error(`Unhandled case: ${_exhaustiveCheck}`)
   }
 
   return <main>{render}</main>

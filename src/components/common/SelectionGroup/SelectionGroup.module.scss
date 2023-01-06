@@ -1,0 +1,39 @@
+.selectionGroup {
+  display: grid;
+  justify-items: flex-start;
+  align-items: center;
+  grid-template-columns: 2fr 3fr;
+
+  button {
+    border: 1px solid var(--main-color);
+    border-right-width: 0px;
+    padding: 1ch 2ch;
+    cursor: pointer;
+    transition: background-color 0.2s ease-out;
+
+    &:first-of-type {
+      border-radius: 1ch 0 0 1ch;
+    }
+
+    &:last-of-type {
+      border-radius: 0 1ch 1ch 0;
+      border-right-width: 1px;
+    }
+
+    &:only-of-type {
+      border-radius: 1ch;
+      border-width: 1px;
+    }
+  }
+
+  button[data-selected="true"] {
+    color: var(--bg-color);
+    background-color: var(--main-color);
+
+    &:disabled {
+      background-color: var(--grey);
+      cursor: revert;
+      color: var(--bg-color);
+    }
+  }
+}
