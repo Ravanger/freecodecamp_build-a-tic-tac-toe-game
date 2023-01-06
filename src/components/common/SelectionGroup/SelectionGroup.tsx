@@ -15,6 +15,7 @@ function SelectionGroup<T>({
         {values.map((value) => {
           return (
             <button
+              key={value}
               value={value}
               onClick={() => handleClick(value as T)}
               data-selected={value === selected}
