@@ -1,7 +1,6 @@
 import { atom } from "nanostores"
-import { CellState } from "@components/Board/Cell/Cell.types"
 import { AiDifficulty } from "src/types/ai"
-import { GameState } from "@type/game"
+import { CellState, GameState } from "@type/game"
 
 const initialCells = Array(9).fill(CellState.Empty)
 

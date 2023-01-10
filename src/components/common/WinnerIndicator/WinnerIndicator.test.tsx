@@ -1,4 +1,4 @@
-import { CellState } from "@components/Board/Cell/Cell.types"
+import { CellState } from "@type/game"
 import { winner } from "@store/game"
 import { render, screen } from "@testing-library/react"
 import WinnerIndicator from "./WinnerIndicator"

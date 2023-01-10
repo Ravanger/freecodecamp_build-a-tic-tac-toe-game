@@ -1,5 +1,5 @@
 import { checkForTie, checkForWinner } from "./game"
-import { CellState } from "@components/Board/Cell/Cell.types"
+import { CellState } from "@type/game"
 
 describe("checkForWinner", () => {
   it("should return true if there is a row of Xs", () => {

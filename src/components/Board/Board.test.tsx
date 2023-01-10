@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
+import { CellState } from "@type/game"
 import Board from "./Board"
-import { CellState } from "./Cell/Cell.types"
 
 describe("Board component", () => {
   beforeEach(() => {

@@ -1,6 +1,6 @@
+import { useEffect } from "react"
 import { useStore } from "@nanostores/react"
 import { checkForTie, checkForWinner } from "@util/game"
-import { CellState } from "@components/Board/Cell/Cell.types"
 import {
   tie,
   playerTurn,
@@ -12,14 +12,16 @@ import {
   cellsState,
   setCellsState,
   aiEnabled,
+  aiDifficulty,
 } from "@store/game"
 import TurnIndicator from "@components/common/TurnIndicator"
 import Board from "@components/Board"
 import Spacer from "@components/common/Spacer"
 import Menu from "@components/Menu"
 import GameOver from "@components/GameOver"
-import { GameState } from "@type/game"
-import { useEffect } from "react"
+import { CellState, GameState } from "@type/game"
+import { getEasyMoveIndex, getHardMoveIndex, getMidMoveIndex } from "@util/ai"
+import { AiDifficulty } from "@type/ai"
 
 const Game: React.FC = () => {
   const currentCellsState = useStore(cellsState)
@@ -28,6 +30,7 @@ const Game: React.FC = () => {
   const currentWinner = useStore(winner)
   const isTie = useStore(tie)
   const isAiEnabled = useStore(aiEnabled)
+  const selectedAiDifficulty = useStore(aiDifficulty)
 
   useEffect(() => {
     if (!isAiEnabled || currentPlayerTurn !== CellState.O) return
@@ -65,15 +68,23 @@ const Game: React.FC = () => {
   // }
 
   const makeAiMove = async () => {
-    console.log(currentPlayerTurn)
     if (currentPlayerTurn !== CellState.O) return
 
-    // EASY - Find the first empty square and mark it with the AI's value.
-    await new Promise((resolve) => setTimeout(resolve, 500))
-    const emptySquareIndex = currentCellsState.findIndex(
-      (square) => square === CellState.Empty
-    )
-    // ~EASY
+    let emptySquareIndex = -1
+    switch (selectedAiDifficulty) {
+      case AiDifficulty.Easy:
+        emptySquareIndex = await getEasyMoveIndex(currentCellsState)
+        break
+      case AiDifficulty.Mid:
+        emptySquareIndex = await getMidMoveIndex(currentCellsState)
+        break
+      case AiDifficulty.Hard:
+        emptySquareIndex = await getHardMoveIndex(currentCellsState)
+        break
+      default:
+        const _exhaustiveCheck: never = selectedAiDifficulty
+        throw new Error(`Unhandled case: ${_exhaustiveCheck}`)
+    }
 
     if (emptySquareIndex === -1) {
       setTie()
@@ -83,7 +94,6 @@ const Game: React.FC = () => {
     nextSquares[emptySquareIndex] = CellState.O
     setCellsState(nextSquares)
 
-    // Check for a winner.
     if (checkForWinner(nextSquares)) {
       setWinner()
     } else {

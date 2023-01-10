@@ -3,3 +3,9 @@ export enum GameState {
   Playing,
   GameOver,
 }
+
+export enum CellState {
+  X = "X",
+  O = "O",
+  Empty = "",
+}

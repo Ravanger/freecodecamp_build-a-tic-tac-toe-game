@@ -1,4 +1,4 @@
-import { CellState } from "@components/Board/Cell/Cell.types"
+import { CellState } from "@type/game"
 
 export const checkForWinner = (board: CellState[]) => {
   // Check the rows.

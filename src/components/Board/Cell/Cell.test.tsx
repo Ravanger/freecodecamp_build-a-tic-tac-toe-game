@@ -1,5 +1,5 @@
 import Cell from "./Cell"
-import { CellState } from "./Cell.types"
+import { CellState } from "@type/game"
 import { render, screen } from "@testing-library/react"
 
 describe("Cell component", () => {
