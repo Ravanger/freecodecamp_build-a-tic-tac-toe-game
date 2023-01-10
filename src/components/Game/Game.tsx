@@ -11,6 +11,7 @@ import {
   gameState,
   cellsState,
   setCellsState,
+  aiEnabled,
 } from "@store/game"
 import TurnIndicator from "@components/common/TurnIndicator"
 import Board from "@components/Board"
@@ -18,6 +19,7 @@ import Spacer from "@components/common/Spacer"
 import Menu from "@components/Menu"
 import GameOver from "@components/GameOver"
 import { GameState } from "@type/game"
+import { useEffect } from "react"
 
 const Game: React.FC = () => {
   const currentCellsState = useStore(cellsState)
@@ -25,7 +27,12 @@ const Game: React.FC = () => {
   const currentPlayerTurn = useStore(playerTurn)
   const currentWinner = useStore(winner)
   const isTie = useStore(tie)
-  // const isAiEnabled = useStore(aiEnabled)
+  const isAiEnabled = useStore(aiEnabled)
+
+  useEffect(() => {
+    if (!isAiEnabled || currentPlayerTurn !== CellState.O) return
+    makeAiMove()
+  }, [currentPlayerTurn])
 
   // const makeCheatAIMove = async () => {
   //   if (currentPlayerTurn !== CellState.O) return
@@ -57,6 +64,33 @@ const Game: React.FC = () => {
   //   }
   // }
 
+  const makeAiMove = async () => {
+    console.log(currentPlayerTurn)
+    if (currentPlayerTurn !== CellState.O) return
+
+    // EASY - Find the first empty square and mark it with the AI's value.
+    await new Promise((resolve) => setTimeout(resolve, 500))
+    const emptySquareIndex = currentCellsState.findIndex(
+      (square) => square === CellState.Empty
+    )
+    // ~EASY
+
+    if (emptySquareIndex === -1) {
+      setTie()
+    }
+
+    const nextSquares = currentCellsState.slice()
+    nextSquares[emptySquareIndex] = CellState.O
+    setCellsState(nextSquares)
+
+    // Check for a winner.
+    if (checkForWinner(nextSquares)) {
+      setWinner()
+    } else {
+      switchTurns()
+    }
+  }
+
   const handleCellClick = async (index: number) => {
     if (
       currentCellsState[index] !== CellState.Empty ||
@@ -66,7 +100,7 @@ const Game: React.FC = () => {
       return
     }
 
-    // if (isAiEnabled && currentPlayerTurn === CellState.O) return
+    if (isAiEnabled && currentPlayerTurn === CellState.O) return
 
     const updatedBoard = currentCellsState.map((prevCell, prevCellIndex) =>
       prevCellIndex === index ? currentPlayerTurn : prevCell
@@ -84,20 +118,16 @@ const Game: React.FC = () => {
     }
 
     switchTurns()
-
-    // if (isAiEnabled) {
-    //   await makeCheatAIMove()
-    // }
   }
 
-  let render = <></>
+  let screenToRender = <></>
 
   switch (currentGameState) {
     case GameState.Menu:
-      render = <Menu />
+      screenToRender = <Menu />
       break
     case GameState.Playing:
-      render = (
+      screenToRender = (
         <>
           <div>
             <TurnIndicator />
@@ -111,14 +141,14 @@ const Game: React.FC = () => {
       )
       break
     case GameState.GameOver:
-      render = <GameOver isTie={isTie} />
+      screenToRender = <GameOver isTie={isTie} />
       break
     default:
       const _exhaustiveCheck: never = currentGameState
       throw new Error(`Unhandled case: ${_exhaustiveCheck}`)
   }
 
-  return <main>{render}</main>
+  return <main>{screenToRender}</main>
 }
 
 export default Game
