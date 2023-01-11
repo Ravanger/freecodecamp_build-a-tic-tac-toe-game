@@ -13,8 +13,9 @@ export const getMidMoveIndex = async (currentCellsState: CellState[]) => {
   const shouldMakeWinningMove = Math.random() < 0.333
   const winningMoveIndex =
     shouldMakeWinningMove && getWinningMoveIndex(currentCellsState)
-  if (winningMoveIndex && winningMoveIndex !== -1) {
-    index = winningMoveIndex
+
+  if (shouldMakeWinningMove && winningMoveIndex !== -1) {
+    index = winningMoveIndex as number // should never be bool here
   } else {
     while (currentCellsState[index] !== CellState.Empty) {
       index = Math.floor(Math.random() * (currentCellsState.length + 1))
