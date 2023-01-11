@@ -11,7 +11,8 @@
     "astro": "astro",
     "test": "vitest run",
     "test:ui": "vitest --ui",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@astrojs/react": "^1.2.1",
@@ -28,6 +29,7 @@
     "@types/react": "^18.0.22",
     "@types/react-dom": "^18.0.7",
     "@typescript-eslint/parser": "^5.41.0",
+    "@vitest/coverage-c8": "^0.27.0",
     "@vitest/ui": "^0.26.2",
     "eslint": "^8.26.0",
     "eslint-plugin-astro": "^0.20.0",
