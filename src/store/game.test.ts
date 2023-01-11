@@ -16,10 +16,15 @@ import {
 import { GameState, CellState } from "@type/game"
 
 describe("game module", () => {
-  it("switchTurns should switch the value of playerTurn", () => {
-    playerTurn.set(CellState.X)
+  it("switchTurns should set playerTurn to O if it's currently X", () => {
     switchTurns()
     expect(playerTurn.get()).toBe(CellState.O)
+  })
+
+  it("switchTurns should set playerTurn to X if it's currently O", () => {
+    playerTurn.set(CellState.O)
+    switchTurns()
+    expect(playerTurn.get()).toBe(CellState.X)
   })
 
   it("setWinner should set the winner and change the game state to GameOver", () => {

@@ -3,6 +3,8 @@ import { CellState } from "@type/game"
 import Board from "./Board"
 
 describe("Board component", () => {
+  const mockFn = vi.fn()
+
   beforeEach(() => {
     const board = [
       CellState.X,
@@ -15,7 +17,6 @@ describe("Board component", () => {
       CellState.Empty,
       CellState.Empty,
     ]
-    const mockFn = vi.fn()
     render(<Board cellsState={board} handleCellClick={mockFn} />)
   })
 
@@ -35,5 +36,11 @@ describe("Board component", () => {
     expect(cellButtons[6]?.textContent).toBe(CellState.Empty)
     expect(cellButtons[7]?.textContent).toBe(CellState.Empty)
     expect(cellButtons[8]?.textContent).toBe(CellState.Empty)
+  })
+
+  it("should call handleCellClick with the correct index when a cell button is clicked", () => {
+    const cellButtons = screen.getAllByRole("button")
+    cellButtons[3]?.click()
+    expect(mockFn).toHaveBeenCalledWith(3)
   })
 })
