@@ -25,6 +25,6 @@ export const getMidMoveIndex = async (currentCellsState: CellState[]) => {
 
 export const getHardMoveIndex = async (currentCellsState: CellState[]) => {
   // TODO: Hard difficulty
-  await new Promise((resolve) => setTimeout(resolve, 1000))
-  return currentCellsState.findIndex((square) => square === CellState.Empty)
+  await new Promise((resolve) => setTimeout(resolve, Math.random() * 1000))
+  return getMidMoveIndex(currentCellsState)
 }
